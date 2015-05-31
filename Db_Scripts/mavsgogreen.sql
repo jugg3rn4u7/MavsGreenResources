@@ -33,8 +33,25 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mavsgogreen`.`users` (
   `userId` INT(11) NOT NULL,
-  `userEmail` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`userId`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mavsgogreen`.`emailinformation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mavsgogreen`.`emailinformation` (
+  `userId` INT(11) NOT NULL,
+  `emailId` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NULL DEFAULT NULL,
+  `Primary` INT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`userId`, `emailId`),
+  CONSTRAINT `FK1_userId_emailInformation`
+    FOREIGN KEY (`userId`)
+    REFERENCES `mavsgogreen`.`users` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
